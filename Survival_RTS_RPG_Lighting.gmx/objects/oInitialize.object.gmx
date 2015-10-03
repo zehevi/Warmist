@@ -70,7 +70,7 @@ view_hview = round(wview*h/w);
 display_set_gui_size(w,h);
 window_set_size(w,h);
 
-application_surface_draw_enable(1);
+application_surface_draw_enable(0);
 surface_resize(application_surface,256,128);
 
 alarm[0] = 5; //5 steps cooldown

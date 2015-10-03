@@ -86,9 +86,9 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_init</room>
-    <room>rooms\rm_test</room>
     <room>rooms\room1</room>
     <room>rooms\room2</room>
+    <room>rooms\rm_test</room>
   </rooms>
   <constants number="3">
     <constant name="KEYBOARD">0</constant>
