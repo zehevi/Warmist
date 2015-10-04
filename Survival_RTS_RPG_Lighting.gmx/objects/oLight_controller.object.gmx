@@ -348,6 +348,36 @@ if(!surface_exists(surfBlurB)) surfBlurB = surface_create(view_wview/1.5,view_hv
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///GUI and controls
+surface_set_target(surfOut);
+
+//Touch controls
+if(control_device==ONSCREEN)
+{
+    draw_sprite_ext(sTouch_shoot,0,touch_shoot_x,touch_shoot_y,1,1,oPlayer.mouse_dirTo,c_white,0.7);
+}
+
+surface_reset_target();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Draw Distortion+Lighting+Smoke
 var guiw = view_wport;
 var guih = view_hport;

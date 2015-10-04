@@ -51,7 +51,11 @@ map_load(map_test());
 globalvar delta;
 delta = 0;
 
-if(room_speed != 60) show_message_async("Room speed must be set to 100#Check this message at 'oController'");
+if(room_speed != 60) 
+{
+    room_speed = 60;
+    show_message_async("Room speed must be set to 100#room_speed changed");
+}
 </string>
           </argument>
         </arguments>
@@ -216,7 +220,7 @@ if(control_device==XBOX360)
           <argument>
             <kind>1</kind>
             <string>///Delta timing
-delta = 60/1000000*delta_time;
+delta = room_speed/1000000*delta_time;
 </string>
           </argument>
         </arguments>

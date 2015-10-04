@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>light_touching[0] = -1;
+model = d3d_model_create();
 </string>
           </argument>
         </arguments>
@@ -72,6 +73,16 @@ pb = point[pbottom,1];
 u = 1/(pr-pl);
 v = 1/(pb-pt);
 
+//create a d3d model
+d3d_model_primitive_begin(model,pr_trianglestrip);
+    for(var i=0; i&lt;pointNum; i++){
+    
+        tx = u*(point[i,0]-point[pleft,0]);
+        ty = v*(point[i,1]-point[ptop,1]);
+        d3d_model_vertex_texture(model,point[i,0],point[i,1],0,tx,ty);
+    }
+d3d_model_primitive_end(model);
+
 //create a surface to draw to
 var surf = surface_create(pr-pl, pb-pt);
 
@@ -89,10 +100,9 @@ draw_set_colour(c_white);
 draw_set_colour(0);
 surface_reset_target();
 
-//sprite_index = sprite_create_from_surface(surf,0,0,pr-pl,pb-pt,0,0,0,0);
-sprite_index = sprite_create_from_surface(surf,pl,pt,pr,pb,0,0,0,0);
-x = 0;//(pr-pl)*.5;
-y = 0;//(pb-pt)*.5;
+sprite_index = sprite_create_from_surface(surf,0,0,pr-pl,pb-pt,0,1,(pr-pl)*.5,(pb-pt)*.5);
+x = pl+(pr-pl)*.5;
+y = pt+(pb-pt)*.5;
 
 surface_free(surf);
 
@@ -123,19 +133,8 @@ pbottom = pb;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///draw the wall model
-/*draw_set_color(image_blend);
-draw_set_alpha(image_alpha);
-d3d_transform_set_identity();
-    d3d_transform_add_rotation_z(image_angle);
-    d3d_transform_add_translation(x,y,0);
-    d3d_model_draw(model,0,0,0,tex);
-d3d_transform_set_identity();
-draw_set_color(0);
-draw_set_alpha(1);*/
-
-draw_self();
-///draw_surface(surf,x,y);
+            <string>draw_self();
+d3d_model_draw(model,0,0,0,tex);
 </string>
           </argument>
         </arguments>
