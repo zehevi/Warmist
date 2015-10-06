@@ -30,7 +30,9 @@ else
         control_device = ONSCREEN;
         globalvar touch_shoot_rad,touch_shoot_x,touch_shoot_y;
         touch_shoot_rad = 32;
-        touch_shoot_x = view_wview-42;
-        touch_shoot_y = view_hview-42;
+        touch_shoot_x = display_get_width()-42;
+        touch_shoot_y = display_get_height()-42;
+        touch_shoot_xdraw = view_wview-42;
+        touch_shoot_ydraw = view_hview-42;
     }
 }

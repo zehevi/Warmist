@@ -238,9 +238,9 @@ case ONSCREEN:
     {
         mx = device_mouse_x(i);
         my = device_mouse_y(i);
-        if(device_mouse_x(i)&gt;view_wport/2)
+        //if(device_mouse_x(i)&gt;view_wview/2)
         {
-            if(point_distance(touch_shoot_x,touch_shoot_y,mx,my)&lt;touch_shoot_rad)
+            if(point_distance(touch_shoot_x,touch_shoot_y,mx,my)&lt;200/*touch_shoot_rad*/)
             {
                 mouse_dirTo = point_direction(touch_shoot_x,touch_shoot_y,mx,my);
                 mouse_dir += angle_difference(mouse_dirTo,mouse_dir)*.075;
@@ -673,7 +673,7 @@ with(other)
           <argument>
             <kind>1</kind>
             <string>///mouse shoot
-if(shootable)
+if(control_device==KEYBOARD &amp;&amp; shootable)
 {
     var len,dir,xx,yy,t,priox,prioy,obj=noone;
     len = 300;
