@@ -87,8 +87,8 @@ globalvar surfOut,surfLightA,surfLightB,surfBlurA,surfBlurB,light_intensity,ligh
 
 surfLightA = surface_create(view_wview,view_hview);
 surfLightB = surface_create(view_wview,view_hview);
-surfBlurA = surface_create(view_wview/2,view_hview/2);
-surfBlurB = surface_create(view_wview/1.5,view_hview/1.5);
+surfBlurA = surface_create(view_wview/4,view_hview/4);
+surfBlurB = surface_create(view_wview/2,view_hview/2);
 
 surfOut = surface_create(view_wview,view_hview);
 
@@ -354,7 +354,7 @@ surface_set_target(surfOut);
 //Touch controls
 if(control_device==ONSCREEN)
 {
-    draw_sprite_ext(sTouch_shoot,0,touch_shoot_x,touch_shoot_y,1,1,oPlayer.mouse_dirTo,c_white,0.7);
+    draw_sprite_ext(sTouch_shoot,0,touch_shoot_xdraw,touch_shoot_ydraw,1,1,oPlayer.mouse_dirTo,c_white,0.7);
 }
 
 surface_reset_target();
@@ -475,7 +475,7 @@ with(oLight_emitter)
     draw_clear_alpha(0,0);
     draw_set_blend_mode(bm_add);
     //draw_clear_alpha(light_ambient,1);
-    draw_sprite_ext(light_sprite,0,x-vx,y-vy,1,1,light_direction,light_color,1);
+    draw_sprite_ext(light_sprite,0,x-vx,y-vy,light_scale,light_scale,light_direction,light_color,light_alpha);
     draw_set_blend_mode(bm_subtract);
     with(oLight_polygon)
     {

@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>///init distortion engine
-dg_init(12,12);
+///////////dg_init(12,12);
 
 /*surfScreen = surface_create(view_wview,view_hview);
 view_surface_id[1] = surfScreen;*/
@@ -55,7 +55,7 @@ view_surface_id[1] = surfScreen;*/
           <argument>
             <kind>1</kind>
             <string>///Distortion update
-dg_update();
+///////////dg_update();
 </string>
           </argument>
         </arguments>
@@ -131,7 +131,7 @@ dg_update();
           <argument>
             <kind>1</kind>
             <string>///Distortion
-dg_draw();
+////////dg_draw();
 </string>
           </argument>
         </arguments>

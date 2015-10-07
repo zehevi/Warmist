@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>light_color = c_green;
+light_alpha = 1;
+light_scale = 1;
 light_sprite = sprite_index;
 light_radius = sprite_get_width(light_sprite)/2;
 light_direction = point_direction(x,y,mouse_x,mouse_y);

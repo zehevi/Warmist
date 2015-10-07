@@ -31,6 +31,8 @@ with(oLight_controller)
     dg_effect_explode(other.x-10+random(20),other.y-10+random(20),40,.5+random(2));
 }
 light_color = merge_colour(c_maroon,c_yellow,random(.25));
+light_alpha = 0.9+random(0.1);
+light_scale = light_alpha;
 </string>
           </argument>
         </arguments>

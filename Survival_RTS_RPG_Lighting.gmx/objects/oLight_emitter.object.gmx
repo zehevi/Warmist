@@ -26,7 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>light_color = image_blend;//make_color_hsv(irandom(255),irandom(255),100);
-//light_alpha = .2;
+light_alpha = .9;
+light_scale = 1;
 light_sprite = sLight;
 light_radius = sprite_get_width(light_sprite)/2;
 light_direction = 0;

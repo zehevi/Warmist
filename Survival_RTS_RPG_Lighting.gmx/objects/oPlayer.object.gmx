@@ -33,6 +33,7 @@ yspd = 0;
 spd = 1.2;
 spdAcc = 0.8;
 
+shooting = 0;
 shootable = 0;
 shotAcc = 5;
 shotRate = room_speed/10; //shots per second
@@ -81,9 +82,10 @@ image_yscale=.5;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Light init
+            <string>///Light init (Flashlight)
 light_color = merge_colour(merge_colour(c_aqua,c_gray,.5),c_black,.1);
-//light_alpha = .2;
+light_alpha = .95;
+light_scale = 1;
 light_sprite = sFlashlight;
 light_radius = sprite_get_width(light_sprite);
 light_direction = 0;
@@ -111,49 +113,8 @@ sprite_overlay = -1;//sChar_overlay;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Particle systems
-shootable = 1;
-
-globalvar Sname,particle1,emitter1;
-
-///bullet particle system
-Sname = part_system_create();
-particle1 = part_type_create();
-part_type_shape(particle1,pt_shape_pixel);
-part_type_size(particle1,1,2,0,0);
-part_type_scale(particle1,1,1);
-part_type_alpha1(particle1,1);
-part_type_speed(particle1,0.30,1,0,0);
-part_type_gravity(particle1,0,270);
-part_type_orientation(particle1,0,0,0,0,1);
-part_type_blend(particle1,0);
-part_type_life(particle1,10,20);
-emitter1 = part_emitter_create(Sname);
-
-scr_part_gunSmoke();
-scr_part_explosion();
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///collision
-CollisionPriority = ds_priority_create();
+//CollisionPriority = ds_priority_create();
 </string>
           </argument>
         </arguments>
@@ -234,20 +195,24 @@ case XBOX360:
 
 case ONSCREEN:
     var mx,my;
+    shooting = false;
     for(var i=0;i&lt;4;i++)
     {
-        mx = device_mouse_x(i);
-        my = device_mouse_y(i);
-        //if(device_mouse_x(i)&gt;view_wview/2)
+        mx = device_mouse_x_to_gui(i);
+        my = device_mouse_y_to_gui(i);
+        if(mx &gt; view_wport/2)
         {
-            if(point_distance(touch_shoot_x,touch_shoot_y,mx,my)&lt;200/*touch_shoot_rad*/)
+            if(point_distance(touch_shoot_x,touch_shoot_y,mx,my)&lt;touch_shoot_rad)
             {
                 mouse_dirTo = point_direction(touch_shoot_x,touch_shoot_y,mx,my);
                 mouse_dir += angle_difference(mouse_dirTo,mouse_dir)*.075;
             }
-            else if(point_distance(touch_shoot_x,touch_shoot_y,mx,my)&lt;touch_shoot_rad*1.5)
+            else if(device_mouse_check_button(i,mb_left) &amp;&amp; point_distance(touch_shoot_x,touch_shoot_y,mx,my)&lt;touch_shoot_rad*2)
             {
                 //shooting
+                shooting = true;
+                mouse_dirTo = point_direction(touch_shoot_x,touch_shoot_y,mx,my);
+                mouse_dir += angle_difference(mouse_dirTo,mouse_dir)*.075;
             }
         }
     }
@@ -378,10 +343,10 @@ with(oWall) if( rectangle_in_rectangle(pleft,ptop,pright,pbottom,view_xview,view
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///gamepad shoot
-if(control_device==XBOX360)
+            <string>///gamepad/touch shoot
+if(control_device==XBOX360 || control_device==ONSCREEN)
 {
-    if(shootable &amp;&amp; gamepad_button_check(0,gp_shoulderrb))
+    if(shootable &amp;&amp; (gamepad_button_check(0,gp_shoulderrb) || shooting))
     {
         var len,dir,xx,yy,t,priox,prioy,obj=noone;
         len = 300;

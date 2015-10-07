@@ -16,6 +16,7 @@
     </sprites>
     <sprites name="GUI">
       <sprite>sprites\sTouch_shoot</sprite>
+      <sprite>sprites\sTouch_move</sprite>
     </sprites>
     <sprites name="Lights">
       <sprite>sprites\sFlashlight</sprite>
@@ -30,7 +31,8 @@
   </sprites>
   <backgrounds name="background">
     <background>background\tex_brick</background>
-    <background>background\background2</background>
+    <background>background\back_floor_dark</background>
+    <background>background\back_floor_light</background>
     <background>background\tex_wall</background>
   </backgrounds>
   <paths name="paths"/>
@@ -60,8 +62,10 @@
       <script>scripts\lines_intersect.gml</script>
       <script>scripts\collision_line_first.gml</script>
     </scripts>
-    <script>scripts\scr_part_gunSmoke.gml</script>
-    <script>scripts\scr_part_explosion.gml</script>
+    <scripts name="Particles">
+      <script>scripts\scr_part_gunSmoke.gml</script>
+      <script>scripts\scr_part_explosion.gml</script>
+    </scripts>
     <script>scripts\init_control_device.gml</script>
   </scripts>
   <objects name="objects">
@@ -75,9 +79,6 @@
     <objects name="Map_engine">
       <object>objects\oWall</object>
       <object>objects\oWall_old</object>
-    </objects>
-    <objects name="Distortion_Engine">
-      <object>objects\oDistortion_controller</object>
     </objects>
     <objects name="Global_items">
       <object>objects\oPlayer</object>
