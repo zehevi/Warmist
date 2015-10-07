@@ -253,7 +253,19 @@ case XBOX360:
     break;
 
 case ONSCREEN:
-    
+    speed = 0;
+    var mx,my,sd=spd*delta;
+    for(var i=0; i&lt;4; i++) if(device_mouse_check_button(i,mb_left))
+    {
+        mx = device_mouse_x_to_gui(i);
+        my = device_mouse_y_to_gui(i);
+        if(mx&lt;view_wport/2 &amp;&amp; point_distance(mx,my,touch_move_x,touch_move_y)&lt;touch_move_rad)
+        {
+            //xx = (mx-touch_move_x)/(touch_move_rad)
+            hspeed = median(-sd, (mx-touch_move_x)/(touch_move_rad), sd);
+            vspeed = median(-sd, (my-touch_move_y)/(touch_move_rad), sd);
+        }
+    }
     break;
 }
 
