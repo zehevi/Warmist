@@ -43,7 +43,7 @@ else
 //TESTING
 control_device = ONSCREEN;
 globalvar touch_shoot_rad,touch_shoot_x,touch_shoot_y,touch_shoot_xdraw,touch_shoot_ydraw
-          touch_move_rad,touch_move_x,touch_move_y,touch_move_xdraw,touch_move_ydraw;
+          touch_move_rad,touch_move_x,touch_move_y,touch_move_xdraw,touch_move_ydraw,touch_move_joyx,touch_move_joyy;
 touch_shoot_rad = 32*view_wport/view_wview;
 touch_move_rad = 32*view_wport/view_wview;
 var w=42,h=42;
@@ -55,3 +55,6 @@ touch_move_x = w*view_wport/view_wview;
 touch_move_y = display_get_height()-h*view_hport/view_hview;
 touch_move_xdraw = w;
 touch_move_ydraw = view_hview-h;
+touch_move_joyx = touch_move_x;
+touch_move_joyy = touch_move_y;
+

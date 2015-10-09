@@ -259,11 +259,12 @@ case ONSCREEN:
     {
         mx = device_mouse_x_to_gui(i);
         my = device_mouse_y_to_gui(i);
-        if(mx&lt;view_wport/2 &amp;&amp; point_distance(mx,my,touch_move_x,touch_move_y)&lt;touch_move_rad)
+        if(mx&lt;view_wport/2 &amp;&amp; point_distance(mx,my,touch_move_x,touch_move_y)&lt;touch_move_rad*2)
         {
-            //xx = (mx-touch_move_x)/(touch_move_rad)
-            hspeed = median(-sd, (mx-touch_move_x)/(touch_move_rad), sd);
-            vspeed = median(-sd, (my-touch_move_y)/(touch_move_rad), sd);
+            touch_move_joyx = (mx-touch_move_x)/(touch_move_rad)*sd;
+            touch_move_joyy = (my-touch_move_y)/(touch_move_rad)*sd;
+            hspeed = median(-sd, touch_move_joyx, sd);
+            vspeed = median(-sd, touch_move_joyy, sd);
         }
     }
     break;

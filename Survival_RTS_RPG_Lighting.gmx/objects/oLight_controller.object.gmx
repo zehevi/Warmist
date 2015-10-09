@@ -351,15 +351,25 @@ if(!surface_exists(surfBlurB)) surfBlurB = surface_create(view_wview/1.5,view_hv
             <string>///GUI and controls
 if(control_device==ONSCREEN)
 {
-    surface_set_target(surfOut);
+    texture_set_interpolation(1);
+    //surface_set_target(surfOut);
+    surface_set_target(surfLightB);
     {
         //Touch controls
-        draw_sprite_ext(sTouch_shoot,0,touch_shoot_xdraw,touch_shoot_ydraw,1,1,oPlayer.mouse_dirTo,c_white,0.7);
+        //draw_set_blend_mode_ext(10, 1); //invert colours
+        //draw_set_colour(c_white);
+        draw_sprite_ext(sTouch_shoot,0,touch_shoot_xdraw,touch_shoot_ydraw,1,1,oPlayer.mouse_dirTo,c_white,0.3);
         
-        draw_sprite_ext(sTouch_move,0,touch_move_xdraw,touch_move_ydraw,1,1,0,c_white,0.7);
-        draw_sprite_ext(sTouch_move,1,touch_move_xdraw,touch_move_ydraw,1,1,0,c_white,0.7);
+        draw_sprite_ext(sTouch_move,0,touch_move_xdraw,touch_move_ydraw,1,1,0,c_white,0.3);
+        draw_sprite_ext(sTouch_move,1,touch_move_joyx,touch_move_joyy,1,1,0,c_white,0.3);
+        //draw_sprite_inverted(sTouch_move,1,touch_move_xdraw,touch_move_ydraw);
+        
+        //draw_set_blend_mode(0);
+        //draw_set_colour(0);
     }
     surface_reset_target();
+    //surface_reset_target();
+    texture_set_interpolation(0);
 }
 </string>
           </argument>
@@ -385,19 +395,20 @@ if(control_device==ONSCREEN)
 var guiw = view_wport;
 var guih = view_hport;
 draw_surface_stretched(surfOut,0,0,guiw,guih);
-//texture_set_interpolation(1);
+texture_set_interpolation(1);
 
 draw_surface_stretched_ext(surfLightA,0,0,guiw,guih,c_white,1-light_intensity);
-//draw_surface_stretched_ext(surfLightA,-4,-4,guiw,guih,c_white,(1-light_intensity)*.25);
-//draw_surface_stretched_ext(surfLightA,4,-4,guiw,guih,c_white,(1-light_intensity)*.25);
-//draw_surface_stretched_ext(surfLightA,4,4,guiw,guih,c_white,(1-light_intensity)*.25);
-//draw_surface_stretched_ext(surfLightA,-4,4,guiw,guih,c_white,(1-light_intensity)*.25);
+/*draw_surface_stretched_ext(surfLightA,-4,-4,guiw,guih,c_white,(1-light_intensity)*.25);
+draw_surface_stretched_ext(surfLightA,4,-4,guiw,guih,c_white,(1-light_intensity)*.25);
+draw_surface_stretched_ext(surfLightA,4,4,guiw,guih,c_white,(1-light_intensity)*.25);
+draw_surface_stretched_ext(surfLightA,-4,4,guiw,guih,c_white,(1-light_intensity)*.25);*/
+
 draw_set_blend_mode(1);
 draw_surface_stretched_ext(surfLightB,0,0,guiw,guih,c_white,1);
 //draw_surface_stretched_ext(SmokeSurf,0,0,guiw,guih,c_white,image_alpha);
 draw_set_blend_mode(0);
 
-//texture_set_interpolation(0);
+texture_set_interpolation(0);
 </string>
           </argument>
         </arguments>
